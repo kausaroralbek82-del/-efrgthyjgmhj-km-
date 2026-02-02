@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallup Layout Complete</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 40px;
+        background: #f5f5f5;
+        font-size: 14px;
+      }
+
+      nav p {
+        margin: 0 15px;
+        cursor: pointer;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        align-items: center;
+      }
+
+      .menu-left {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .menu-right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .cards {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        flex: 1;
+      }
+
+      .card img {
+        width: 100%;
+        transition: 0.3s;
+        border-radius: 4px;
+      }
+
+      .category {
+        color: rgba(63, 188, 5, 0.938);
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      .card h2 {
+        font-family: "Georgia", serif;
+        font-size: 22px;
+        margin: 10px 0;
+        line-height: 1.3;
+      }
+
+      .trending {
+        list-style: none;
+        padding: 0;
+      }
+
+      .trending li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .trending li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 4px;
+        height: 80%;
+        background: green;
+      }
+
+      .trending h3 {
+        margin: 0;
+        font-family: "Georgia", serif;
+        font-size: 18px;
+        line-height: 1.4;
+      }
+
+      .hero {
+        position: relative;
+        height: 400px;
+        background-image: url("img.jpg");
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 40px;
+        background-color: #333;
+      }
+
+      .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        width: 80%;
+      }
+
+      .btn-primary {
+        background-color: #007a33;
+        color: white;
+        padding: 12px 24px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .feature-section {
+        display: flex;
+        gap: 40px;
+        padding: 40px 0;
+        align-items: flex-start;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 40px;
+      }
+
+      .feature-text {
+        flex: 1.5;
+      }
+
+      .feature-text h2 {
+        font-family: "Georgia", serif;
+        font-size: 36px;
+        line-height: 1.2;
+      }
+
+      .feature-image {
+        flex: 1.5;
+      }
+
+      .feature-image img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .feature-side {
+        flex: 1;
+        border-left: 3px solid #e5e5e5;
+        padding-left: 20px;
+      }
+
+      .feature-side h3 {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      .connect-section {
+        border: 1px solid #e5e5e5;
+        padding: 30px 40px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+      }
+
+      .connect-left h2 {
+        font-family: "Georgia", serif;
+        font-size: 36px;
+        margin: 0 0 10px 0;
+      }
+
+      .connect-left p {
+        font-size: 16px;
+        color: #555;
+        margin: 0 0 20px 0;
+      }
+
+      .connect-link {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .connect-link:hover {
+        text-decoration: underline;
+      }
+
+      .social-icons-connect {
+        display: flex;
+        gap: 20px;
+        font-size: 24px;
+      }
+
+      .social-icons-connect i {
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .social-icons-connect i:hover {
+        color: #007a33;
+      }
+
+      .footer-divider {
+        height: 5px;
+        background-color: #007a33;
+        width: 100%;
+        margin-top: 40px;
+      }
+
+      footer {
+        padding: 50px 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .footer-col-1 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-logo {
+        font-size: 28px;
+        font-family: "Georgia", serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .footer-col-2 {
+        flex: 2;
+        display: flex;
+        justify-content: space-around;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        margin: 0 40px;
+        padding: 0 20px;
+      }
+
+      .link-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .link-group a {
+        text-decoration: none;
+        color: #333;
+        transition: 0.2s;
+      }
+
+      .link-group a:hover {
+        color: #007a33;
+      }
+
+      .btn-contact-footer {
+        background-color: #00994d;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        display: inline-block;
+        border-radius: 2px;
+        margin-top: 10px;
+      }
+
+      .footer-col-3 {
+        flex: 1.5;
+      }
+
+      .subscribe-form {
+        display: flex;
+        margin-top: 10px;
+      }
+
+      .subscribe-form input {
+        background-color: #f2f2f2;
+        border: none;
+        padding: 15px;
+        width: 100%;
+        outline: none;
+      }
+
+      .subscribe-form button {
+        background-color: #00994d;
+        color: white;
+        border: none;
+        padding: 0 25px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .menu-icon {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 15px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2000;
+        color: #333;
+      }
+
+      .mobile-nav {
+        position: fixed;
+
+        background-color: white;
+        padding: 60px 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+
+        z-index: 1000;
+        box-sizing: border-box;
+
+        top: 0;
+        right: -100%;
+        width: 250px;
+
+        transition: 0.3s;
+      }
+
+      .mobile-nav.active {
+        transform: translateY(0);
+        right: 0;
+      }
+
+      .mobile-nav a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .analytics-section {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .analytics-grid {
+        flex: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      @media (max-width: 900px) {
+        nav,
+        .menu-left,
+        .menu-right {
+          display: none;
+        }
+
+        .menu-icon {
+          display: block;
+        }
+
+        .cards,
+        .hero,
+        .feature-section,
+        .connect-section,
+        .analytics-section,
+        .analytics-grid {
+          flex-direction: column;
+          display: flex;
+        }
+
+        .analytics-grid {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .feature-text,
+        .feature-image,
+        .feature-side {
+          width: 100%;
+        }
+
+        .footer-col-2 {
+          margin: 20px 0;
+          padding: 20px 0;
+          border-left: none;
+          border-right: none;
+          border-top: 1px solid #ddd;
+          border-bottom: 1px solid #ddd;
+        }
+
+        footer {
+          flex-direction: column;
+          text-align: center;
+          gap: 30px;
+        }
+
+        .social-icons-connect {
+          justify-content: center;
+        }
+
+        .top-bar {
+          justify-content: center;
+        }
+
+        .top-bar h2 {
+          display: block !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <p>About Us</p>
+      <p>Careers</p>
+      <p>Contact Us</p>
+      <p>Subscribe</p>
+    </nav>
+
+    <i class="fa-solid fa-bars menu-icon"></i>
+
+    <div class="mobile-nav">
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Subscribe</a>
+      <a href="#" style="color: #007a33">Log In</a>
+    </div>
+
+    <div class="container">
+      <div class="top-bar">
+        <div class="menu-left">
+          <h2
+            style="
+              font-family: Georgia, serif;
+              font-size: 32px;
+              margin-right: 20px;
+            "
+          >
+            GALLUP
+          </h2>
+          <p>Workplace Advisory</p>
+          <p>CliftonStrengths</p>
+          <p>Research & Polling</p>
+          <p>Courses & Events</p>
+          <p>News & Insights</p>
+        </div>
+
+        <h2
+          style="font-family: Georgia, serif; font-size: 32px; display: none"
+          class="mobile-logo-show"
+        >
+          GALLUP
+        </h2>
+
+        <div class="menu-right">
+          <p>Shop</p>
+          <p>Sign in</p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>
+            Employee engagement has fallen from its 2020 peak, with sharp drops
+            among younger workers.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>
+            Employee engagement has fallen from its 2020 peak, with sharp drops
+            among younger workers.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>
+            Employee engagement has fallen from its 2020 peak, with sharp drops
+            among younger workers.
+          </p>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>Employee engagement has fallen from its 2020 peak.</p>
+        </div>
+
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>Employee engagement has fallen from its 2020 peak.</p>
+        </div>
+
+        <div class="card">
+          <img src="7a74f2ba-4b22-45ff-80c9-5f6aaab6937f.webp" />
+          <p class="category">Workplace</p>
+          <h2>U.S. Employee Engagement Declines From 2020 Peak</h2>
+          <p>Employee engagement has fallen from its 2020 peak.</p>
+        </div>
+
+        <div class="card">
+          <h2 style="margin-top: 0">Trending Insights</h2>
+          <ol class="trending">
+            <li><h3>Volunteerism Has Recovered From Pandemic Low</h3></li>
+            <li><h3>How Russia's and Ukraine's Neighbors See Them</h3></li>
+            <li><h3>EU Earns Steady, High Approval Across the Bloc</h3></li>
+            <li>
+              <h3>Nurses Continue to Lead in Honesty and Ethics Ratings</h3>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <h2>Global Indicators</h2>
+      <p>
+        Measuring progress on what matters most to workplaces and societies.
+      </p>
+
+      <div class="cards">
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="471420f1-085d-4044-84d2-599f4eeba02a.webp" />
+          <p class="category">Indicator</p>
+          <h2>Employee Engagement</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="471420f1-085d-4044-84d2-599f4eeba02a.webp" />
+          <p class="category">Indicator</p>
+          <h2>Employee Engagement</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="471420f1-085d-4044-84d2-599f4eeba02a.webp" />
+          <p class="category">Indicator</p>
+          <h2>Employee Engagement</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="471420f1-085d-4044-84d2-599f4eeba02a.webp" />
+          <p class="category">Indicator</p>
+          <h2>Employee Engagement</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="471420f1-085d-4044-84d2-599f4eeba02a.webp" />
+          <p class="category">Indicator</p>
+          <h2>Employee Engagement</h2>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero-content">
+          <div
+            style="
+              padding-bottom: 20px;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+          >
+            Featured Research
+          </div>
+          <h2
+            style="
+              font-family: Georgia, serif;
+              font-size: 40px;
+              margin-bottom: 20px;
+            "
+          >
+            West Health-Gallup Center on Healthcare
+          </h2>
+          <p>
+            The West Health-Gallup Center on Healthcare in America delivers
+            rigorous research.
+          </p>
+          <a class="btn-primary" href="https://westhealth.gallup.com"
+            >Visit the Center</a
+          >
+        </div>
+      </div>
+
+      <div class="feature-section">
+        <div class="feature-text">
+          <h2>
+            New State Rankings Expose <br />
+            Cracks in America’s <br />
+            Healthcare System
+          </h2>
+          <p style="font-size: 18px; color: #555; margin-top: 20px">
+            A first-of-its-kind West Health-Gallup study shows that America’s
+            healthcare system is not working for everyone.
+          </p>
+        </div>
+        <div class="feature-image">
+          <img src="6a675422-3fda-434f-a2e3-1e55dae87180.webp" alt="" />
+        </div>
+        <div class="feature-side">
+          <p class="category">Wellbeing</p>
+          <h3>How Do Americans Experience Healthcare in Their State?</h3>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="9c012f70-5c0a-49b1-96a6-13a94aaf2cd9.webp" />
+          <p class="category">Report</p>
+          <h2>State of the Global Workplace Report</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="c788bbc9-8278-441d-acc7-7e697a7d6b67.webp" />
+          <p class="category">Report</p>
+          <h2>State of the World's Emotional Health</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="8553f35f-4269-4311-9790-3650823bfca1.webp" />
+          <p class="category">Report</p>
+          <h2>World Happiness Report</h2>
+        </div>
+        <div
+          class="card"
+          style="border: 1px solid rgb(196, 196, 196); padding: 30px"
+        >
+          <img src="be41be16-6287-4f7a-b2f1-336b5426a11a.webp" />
+          <p class="category">Report</p>
+          <h2>Global Leadership Report: What Followers Want</h2>
+        </div>
+      </div>
+
+      <div class="analytics-section">
+        <div style="flex: 1">
+          <p class="category">About Gallup</p>
+          <h2
+            style="
+              font-family: Georgia, serif;
+              font-size: 36px;
+              line-height: 1.2;
+            "
+          >
+            Analytics & Advice That Empower Leaders
+          </h2>
+          <p style="font-size: 18px; color: #555; line-height: 1.6">
+            We provide data no one else has, to help you make decisions no one
+            else can.
+          </p>
+          <a
+            href="#"
+            style="
+              color: #007a33;
+              font-weight: bold;
+              text-decoration: none;
+              text-transform: uppercase;
+              font-size: 14px;
+            "
+            >Learn More About Us <i class="fa-solid fa-chevron-right"></i
+          ></a>
+        </div>
+
+        <div class="analytics-grid">
+          <div
+            style="
+              border: 1px solid rgb(196, 196, 196);
+              padding: 20px;
+              border-radius: 3%;
+            "
+          >
+            <p class="category">Our Experience</p>
+            <h2 style="font-size: 32px; color: #007a33; margin: 10px 0">
+              90+ years
+            </h2>
+            <p>of public opinion survey research expertise.</p>
+            <a
+              href="#"
+              style="color: black; font-weight: bold; text-decoration: none"
+              >See our latest insights <i class="fa-solid fa-chevron-right"></i
+            ></a>
+          </div>
+          <div
+            style="
+              border: 1px solid rgb(196, 196, 196);
+              padding: 20px;
+              border-radius: 3%;
+            "
+          >
+            <p class="category">Our Experience</p>
+            <h2 style="font-size: 32px; color: #007a33; margin: 10px 0">
+              90+ years
+            </h2>
+            <p>of public opinion survey research expertise.</p>
+            <a
+              href="#"
+              style="color: black; font-weight: bold; text-decoration: none"
+              >See our latest insights <i class="fa-solid fa-chevron-right"></i
+            ></a>
+          </div>
+          <div
+            style="
+              border: 1px solid rgb(196, 196, 196);
+              padding: 20px;
+              border-radius: 3%;
+            "
+          >
+            <p class="category">Our Experience</p>
+            <h2 style="font-size: 32px; color: #007a33; margin: 10px 0">
+              90+ years
+            </h2>
+            <p>of public opinion survey research expertise.</p>
+            <a
+              href="#"
+              style="color: black; font-weight: bold; text-decoration: none"
+              >See our latest insights <i class="fa-solid fa-chevron-right"></i
+            ></a>
+          </div>
+          <div
+            style="
+              border: 1px solid rgb(196, 196, 196);
+              padding: 20px;
+              border-radius: 3%;
+            "
+          >
+            <p class="category">Our Experience</p>
+            <h2 style="font-size: 32px; color: #007a33; margin: 10px 0">
+              90+ years
+            </h2>
+            <p>of public opinion survey research expertise.</p>
+            <a
+              href="#"
+              style="color: black; font-weight: bold; text-decoration: none"
+              >See our latest insights <i class="fa-solid fa-chevron-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="connect-section">
+        <div class="connect-left">
+          <h2>Connect With Us</h2>
+          <p>Learn how we can help you solve your most important challenges.</p>
+          <a href="#" class="connect-link"
+            >Contact Us <i class="fa-solid fa-chevron-right"></i
+          ></a>
+        </div>
+        <div class="social-icons-connect">
+          <i class="fa-brands fa-linkedin-in"></i>
+          <i class="fa-brands fa-x-twitter"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+
+    <footer>
+      <div class="footer-col-1">
+        <div class="footer-logo">GALLUP</div>
+        <div
+          class="social-icons-connect"
+          style="font-size: 18px; gap: 15px; margin-top: 20px"
+        >
+          <i class="fa-brands fa-linkedin-in"></i>
+          <i class="fa-brands fa-x-twitter"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+      </div>
+
+      <div class="footer-col-2">
+        <div class="link-group">
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Locations</a>
+          <a href="#">News</a>
+          <a href="#">Store</a>
+        </div>
+        <div class="link-group">
+          <a href="#">Media Center</a>
+          <a href="#">Gallup Speakers</a>
+          <a href="#">Customer Support</a>
+          <a href="#" class="btn-contact-footer">CONTACT US</a>
+        </div>
+      </div>
+
+      <div class="footer-col-3">
+        <p style="font-weight: bold; margin-bottom: 10px; margin-top: 0">
+          Subscribe to Our Latest Insights
+        </p>
+        <div class="subscribe-form">
+          <input type="email" placeholder="Your Email Address" />
+          <button>SIGN UP</button>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const burgerBtn = document.querySelector(".menu-icon");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      burgerBtn.addEventListener("click", () => {
+        mobileNav.classList.toggle("active");
+        if (mobileNav.classList.contains("active")) {
+        }
+      });
+    </script>
+  </body>
+</html>
